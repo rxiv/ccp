@@ -5,20 +5,20 @@ import (
 	"encoding/hex"
 )
 
-func to_hex(in string) string {
+func ToHex(in string) string {
 	return string(hex.EncodeToString([]byte(in)))
 }
 
-func from_hex(in string) string {
+func FromHex(in string) string {
 	out, _ := hex.DecodeString(in)
 	return string(out)
 }
 
-func to_b64(in string) string {
+func ToB64(in string) string {
 	return b64.StdEncoding.EncodeToString([]byte(in))
 }
 
-func from_b64(in string) string {
+func FromB64(in string) string {
 	out, _ := b64.StdEncoding.DecodeString(in)
 	return string(out)
 }
@@ -29,4 +29,3 @@ func XorString(s1, key string) (out string) {
 	}
 	return out
 }
-
