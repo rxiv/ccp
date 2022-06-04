@@ -1,4 +1,4 @@
-package ccp
+package github.com/rxiv/ccp
 
 import (
 	b64 "encoding/base64"
