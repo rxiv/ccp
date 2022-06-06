@@ -3,6 +3,8 @@ package ccp
 import (
 	b64 "encoding/base64"
 	"encoding/hex"
+	"strings"
+
 )
 
 func ToHex(in string) string {
@@ -28,4 +30,19 @@ func XorString(s1, key string) (out string) {
 		out += string(s1[i] ^ key[i%len(key)])
 	}
 	return out
+}
+
+func ScoreText(in string) (out int) {
+	chars := "etaoin shrdlucmfwy"
+	m := make(map[string]int)
+
+	for i := 0; i < len(chars); i++ {
+		val := strings.ToLower(string(chars[i]))
+		m[val] = strings.Count(in, val)
+	}
+	var sum int
+	for _, x := range m {
+		sum += x
+	}
+	return sum
 }
