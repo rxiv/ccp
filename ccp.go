@@ -4,6 +4,7 @@ import (
 	b64 "encoding/base64"
 	"encoding/hex"
 	"strings"
+	"errors"
 
 )
 
@@ -45,4 +46,25 @@ func ScoreText(in string) (out int) {
 		sum += x
 	}
 	return sum
+}
+
+func HammingDistance(s1, s2 string) (int, error) {
+	// use runes to handle utf8
+	a := []rune(s1)
+	b := []rune(s2)
+
+	if len(a) != len(b) {
+		return 0, errors.New("string length mismatch")
+	}
+
+	var sum = 0
+	for i := range a {
+		x := a[i]
+		x ^= b[i]
+		for x > 0 {
+			sum += 1
+			x &= x - 1
+		}
+	}
+	return sum, nil
 }
